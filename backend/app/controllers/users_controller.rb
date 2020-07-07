@@ -11,19 +11,15 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(strong_params)
-    
-        if @user.valid?
-         @user.save
+
          render json: @user
-        else
-          render json: {error: "something went wrong!"}
-        end
+
       end
     
       private
     
       def strong_params
-        params.permit(:username, :password)
+        params.require(:user).permit(:username, :password_digest)
       end
 
 end

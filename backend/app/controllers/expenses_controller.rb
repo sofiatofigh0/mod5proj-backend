@@ -31,10 +31,9 @@ class ExpensesController < ApplicationController
         render json: {message: "Expense Deleted"}
       end
     
-      private
-    
-      def strong_params
-        params.require(:expense).permit(:description,:date,:amount, :expense_id)
-      end
+    private
+  
+    def strong_params
+      params.require(:expense).permit(:description,:date,:amount, :expense_id)
     end
 end
