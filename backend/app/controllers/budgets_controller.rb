@@ -1,16 +1,16 @@
 class BudgetsController < ApplicationController
     def index
         @budgets = Budget.all
-        render json: @budgets, each_serializer: BudgetSerializer
+        render json: @budgets
     end
     
     def show
-        @budget = Budget.find(id: params[:id])
-        render json: @budget, serializer: BudgetSerializer
+        @budget = Budget.find(params[:id])
+        render json: @budget
     end
 
     def create
-        @budget = Budget.new(strong_params)
+        @budget = Budget.create(strong_params)
         render json: @budget
      
     end

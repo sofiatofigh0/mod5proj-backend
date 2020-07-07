@@ -1,18 +1,18 @@
 class ExpensesController < ApplicationController
     def index
         @expenses = Expense.all
-        render json: @expenses, each_serializer: ExpenseSerializer
+        render json: @expenses
     end
     
     def show
-        @expense = Expense.find(id: params[:id])
-        render json: @expense, serializer: ExpenseSerializer
+        @expense = Expense.find(params[:id])
+        render json: @expense
     end
 
       def create
-        @expense = Expense.new(strong_params)
+        @expense = Expense.create(strong_params)
         render json: @expense
-    end
+     end
 
     def edit
         @expense=Expense.find(params[:id])
@@ -34,6 +34,6 @@ class ExpensesController < ApplicationController
     private
   
     def strong_params
-      params.require(:expense).permit(:description,:date,:amount, :expense_id)
+      params.require(:expense).permit(:description,:date,:amount,:budget_id)
     end
 end
