@@ -8,4 +8,34 @@ class BudgetsController < ApplicationController
         @budget = Budget.find(id: params[:id])
         render json: @budget, serializer: BudgetSerializer
     end
+
+    def create
+        @budget = Budget.new(strong_params)
+        render json: @budget
+     
+    end
+
+    def edit
+        @budget=Budget.find(params[:id])
+     end
+     
+     def update
+         @budget=Budget.find(params[:id])
+
+        @budget.update(strong_params)
+        render json: @budget
+    end
+
+    def destroy
+        @budget = Post.find(params[:id])
+        @budget.destroy
+        render json: {message: "Budget Deleted"}
+
+        
+    end
+
+    def strong_params
+        params.require(:budget).permit(:category, :amount, :user_id)
+    end
+
 end
