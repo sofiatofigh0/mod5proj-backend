@@ -27,7 +27,7 @@ class BudgetsController < ApplicationController
     end
 
     def destroy
-        @budget = Post.find(params[:id])
+        @budget = Budget.find(params[:id])
         @budget.destroy
         render json: {message: "Budget Deleted"}
 
